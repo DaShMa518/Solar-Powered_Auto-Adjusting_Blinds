@@ -1,2 +1,10 @@
 # Solar-Powered_Auto-Adjusting_Blinds
 An embedded systems proof-of-concept design implementation. 
+
+An embedded system designed to automatically open and close window blinds based on the amount of light detected, as well as temperature at the window. A servo motor is used to pull the blinds drawstrings either direction. The system is designed to  be self-sustaining with the use of a solar panel and rechargeable li-ion batteries. User enhancements include LEDs to help distinguish when system is in automatic or manual override mode. Manual override mode is initialized with infrared codes sent via remote control. There is also a LCD screen to display the temperature as a quick means for the user to determine the approximate temp outdoors.
+
+This system is designed around an Arduino Mega 2560 microcontroller. The programming code was written in C++ within the Arduino IDE and included multiple Arduino libraries, e.g. Servo.h, LiquidCrystal.h, IRremote.h. The program constantly takes voltage readings from the thermistor and photoresistor and uses those values to compare against the baseline thresholds in determining if the servo should open or close the blinds. The servo parameters are degrees from the zero position, where 0 degrees would be fully closed and 90 degrees would be fully open.
+
+A PCB was created to hold all of the passive components and insert into the Arduino microcontroller as a stand-alone unit, where the two could be separated if needed for troubleshooting. The PCB included a lithium-ion battery charger that was between the solar panel and batteries, and then a DC-DC booster that took the ~3.7 volts from the batteries and boosted the voltage up to 5 volts to feed the whole system.
+
+Overall, the system powers up from the solar panel and the batteries, and functions as intended. It was discovered that the servo motor is continuously clicking/crackling internally, which indicates that it is drawing amperage even when not being called into action. This is pulling needed power from the system. In future developments, the integration of an NPN transistor may help to cease amp draw from the motor when not being called to rotate.
